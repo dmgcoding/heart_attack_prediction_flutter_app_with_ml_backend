@@ -30,24 +30,24 @@ class _HomeState extends State<Home> {
 
   Gender? _selectedGender;
 
-  // _clearFields() {
-  //   FocusScope.of(context).unfocus();
-  //   _ageCtrl.clear();
-  //   _cpCtrl.clear();
-  //   _trestbpsCtrl.clear();
-  //   _cholCtrl.clear();
-  //   _fbsCtrl.clear();
-  //   _restecgCtrl.clear();
-  //   _thalachCtrl.clear();
-  //   _exangCtrl.clear();
-  //   _oldpeakCtrl.clear();
-  //   _slopeCtrl.clear();
-  //   _caCtrl.clear();
-  //   _thalCtrl.clear();
-  // }
+  _clearFields() {
+    FocusScope.of(context).unfocus();
+    // _ageCtrl.clear();
+    // _cpCtrl.clear();
+    // _trestbpsCtrl.clear();
+    // _cholCtrl.clear();
+    // _fbsCtrl.clear();
+    // _restecgCtrl.clear();
+    // _thalachCtrl.clear();
+    // _exangCtrl.clear();
+    // _oldpeakCtrl.clear();
+    // _slopeCtrl.clear();
+    // _caCtrl.clear();
+    // _thalCtrl.clear();
+  }
 
   void _getPredicts() {
-    // _clearFields();
+    _clearFields();
 
     if (context.read<AppStateChangeNotifier>().isLoading) return;
 
@@ -116,8 +116,6 @@ class _HomeState extends State<Home> {
         slope: slope,
         ca: ca,
         thal: thal);
-
-    print(reqData.toJson());
 
     context.read<AppStateChangeNotifier>().getPredicts(context, reqData);
   }

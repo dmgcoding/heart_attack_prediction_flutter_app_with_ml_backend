@@ -9,10 +9,16 @@ import 'package:heart_attack_prediction/uis/screens/predictions.dart';
 class AppStateChangeNotifier extends ChangeNotifier {
   bool _isLoading = false;
 
-//getter
+  //getter
   bool get isLoading => _isLoading;
 
+  //get predictions
+  //INPUT: buildcontext and reqModel(which contains post request body data)
+  //DO: do the api call get response, error handle if error occurs, if everythings good navigate to
+  //preidctions screen(with response data)
+  //RETURN: none|void
   void getPredicts(BuildContext cxt, PredictReqModel reqData) async {
+    //make isLoading true to show the loading indicator in ui
     _isLoading = true;
     notifyListeners();
     try {
@@ -41,14 +47,14 @@ class AppStateChangeNotifier extends ChangeNotifier {
         return;
       }
 
+      _isLoading = false;
+      notifyListeners();
+
       PredicResModelData? data = searchResultsRes.data;
       if (cxt.mounted) {
         Navigator.push(
             cxt, MaterialPageRoute(builder: (context) => Predictions(data)));
       }
-
-      _isLoading = false;
-      notifyListeners();
     } catch (e) {
       _isLoading = false;
       notifyListeners();
